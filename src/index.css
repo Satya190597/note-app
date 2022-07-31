@@ -25,6 +25,7 @@ code {
 
 .dark-mode {
   background-color: black;
+  min-height: 100vh;
 }
 
 .dark-mode h1 {
