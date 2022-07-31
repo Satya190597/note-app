@@ -1,6 +1,11 @@
+@font-face {
+  font-family: 'IndieFlower-Regular';
+  src: local('IndieFlower-Regular'), url(./fonts/IndieFlower-Regular.ttf) format('truetype');
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: IndieFlower-Regular,-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -42,6 +47,7 @@ code {
 }
 
 .save {
+  font-family: IndieFlower-Regular;
   background-color: #e1e1e1;
   border: none;
   border-radius: 15px;
@@ -59,10 +65,16 @@ code {
   border-radius: 10px;
   padding: 1rem; 
   min-height: 170px;
+  max-height: 170px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  white-space: pre-wrap;
+  white-space: pre-wrap;  
+}
+
+.note span {
+  overflow-y: auto;    
+  overflow-wrap: break-word;
 }
 
 .note.new {
@@ -70,6 +82,7 @@ code {
 }
 
 textarea {
+  font-family: IndieFlower-Regular;
   border: none;
   resize: none;
   background-color: #67d7cc;
@@ -81,30 +94,69 @@ textarea:focus{
 
 
 .note-footer {
+  margin-top: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+.delete-icon {
+  color: #ff030347;
+}
+
 .delete-icon:hover {
   cursor: pointer;
-  color: red;
+  color: #ff0000;
 }
 
 .search {  
   display: flex;
   align-items: center;
   background-color: rgb(233, 233, 233);
-  border-radius: 10px;
-  padding: 5px;
+  border-radius: 25px;
+  padding: 10px;
   margin-bottom: 1.5em;
 }
-
+.search-icon {
+  margin-right: 5px;
+}
 .search input {  
+  font-family: IndieFlower-Regular;
+  font-size: 15px;
+  height: 25px;
+  width: 100%;
   border: none;
   background-color: rgb(233, 233, 233);
 }
 
 .search input:focus {
   outline: none;
+}
+
+
+.note span::-webkit-scrollbar {
+  width: 10px;  
+}
+
+.note span::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+.note span::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}
+
+
+::-webkit-scrollbar {
+  width: 1px;  
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);   
+}
+
+::-webkit-scrollbar-thumb {  
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
