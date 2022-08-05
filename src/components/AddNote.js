@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-const AddNote = ({ handleAddNote }) => {
+const AddNote = ({ handleAddNote,mode }) => {
   const [noteText, setNoteText] = useState("");
   const characterLimit = 200;
 
@@ -17,9 +17,9 @@ const AddNote = ({ handleAddNote }) => {
   };
   return (
     <>
-      <div className="note new">
-        <textarea
-          rows="8"
+      <div className={`${mode && "note-dark"} ${!mode && "note"}`}>
+        <textarea          
+          rows="7"
           cols="10"
           placeholder="Type to add note"
           onChange={handleChange}
@@ -27,7 +27,7 @@ const AddNote = ({ handleAddNote }) => {
         ></textarea>
         <div className="note-footer">
           <small>{characterLimit - noteText.length} Remaining</small>
-          <button className="save" onClick={handleClick}>
+          <button className={`${mode && "save-dark"} ${!mode && "save"}`} onClick={handleClick}>
             Save
           </button>
         </div>
