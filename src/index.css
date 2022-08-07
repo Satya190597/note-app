@@ -69,13 +69,13 @@ code {
   border: none;
   background-color: #262626;
   /* color: #85C1E9; */
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 15px;
   box-shadow: -2px -2px 2px 0 rgba(58, 58, 58, 0.3),
     5px 5px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-.save-dark:hover {  
+.save-dark:hover {
   outline: none;
   cursor: pointer;
 }
@@ -85,7 +85,7 @@ code {
   outline: none;
   cursor: pointer;
 }
-.save:focus {  
+.save:focus {
   outline: none;
 }
 
@@ -99,7 +99,7 @@ code {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  white-space: pre-wrap;  
+  white-space: pre-wrap;
   box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.8),
     6px 6px 10px rgba(0, 0, 0, 0.2);
 }
@@ -114,9 +114,9 @@ code {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  white-space: pre-wrap;  
+  white-space: pre-wrap;
   /* color: #85C1E9; */
-  color: #FFFFFF;
+  color: #ffffff;
   box-shadow: -5px -5px 5px 0 rgba(58, 58, 58, 0.3),
     12px 12px 12px 0 rgba(0, 0, 0, 0.2);
 }
@@ -143,13 +143,13 @@ code {
 }
 
 .note-dark textarea {
-  font-family: IndieFlower-Regular;  
+  font-family: IndieFlower-Regular;
   background-color: #262626;
   border: none;
   resize: none;
   border-radius: 5px;
   padding: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
   box-shadow: inset -4px -4px 8px rgba(29, 28, 28, 0.5),
     inset 8px 8px 16px rgba(0, 0, 0, 0.1);
 }
@@ -166,18 +166,22 @@ textarea:focus {
 }
 
 .delete-icon {
-  /* color: #ff030347; */
   color: #5f585847;
-}
-
-.delete-icon-dark {
-  cursor: pointer;
-  color: #ff0000;
 }
 
 .delete-icon:hover {
   cursor: pointer;
   color: #ff0000;
+}
+
+.edit-icon {
+  margin-right: 5px;
+  color: #5f585847;
+}
+
+.edit-icon:hover {
+  cursor: pointer;
+  color: #03A9F4;
 }
 
 .search {
@@ -189,7 +193,6 @@ textarea:focus {
   margin-bottom: 1.5em;
   box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.8),
     inset 8px 8px 16px rgba(0, 0, 0, 0.2);
-  
 }
 
 .search-dark {
@@ -199,6 +202,7 @@ textarea:focus {
   border-radius: 25px;
   padding: 10px;
   margin-bottom: 1.5em;
+  color: #ffffff;
   box-shadow: inset -4px -4px 8px rgba(29, 28, 28, 0.5),
     inset 8px 8px 16px rgba(0, 0, 0, 0.1);
 }
@@ -213,7 +217,7 @@ textarea:focus {
   width: 100%;
   border: none;
   /* color: #85C1E9; */
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: #f3f0f100;
 }
 
@@ -237,7 +241,6 @@ textarea:focus {
 .note span::-webkit-scrollbar {
   width: 10px;
 }
-
 
 .note span::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);

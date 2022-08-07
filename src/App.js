@@ -37,6 +37,13 @@ const App = () => {
     setNotes(newNotes);
   };
 
+  const updateNote = (id, text) => {
+    const index = notes.findIndex((note) => note.id === id);
+    const notesList = [...notes];
+    notesList[index].text = text;
+    setNotes(notesList);
+  };
+
   const deleteNote = (id) => {
     const notesList = notes.filter((note) => note.id !== id);
     setNotes(notesList);
@@ -44,20 +51,25 @@ const App = () => {
 
   return (
     <div className={`${darkMode && "dark-mode"} ${!darkMode && "light-mode"}`}>
-      {
-        !loading && <div className="container">
+      {!loading && (
+        <div className="container">
           <Header handleToggleDarkMode={setDarkMode} mode={darkMode} />
-          <Search handleSearchText={setSearchText} text={searchText} mode={darkMode} />
+          <Search
+            handleSearchText={setSearchText}
+            text={searchText}
+            mode={darkMode}
+          />
           <NotesList
             notes={notes.filter((note) =>
               note.text.toLowerCase().includes(searchText.toLowerCase())
             )}
             handleAddNote={addNote}
+            handleUpdateNote={updateNote}
             handleDeleteNote={deleteNote}
             mode={darkMode}
           />
-        </div>       
-      }
+        </div>
+      )}
     </div>
   );
 };
