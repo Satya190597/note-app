@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/note-app/static/css/main.e8a15862.css",
-    "main.js": "/note-app/static/js/main.1e36e947.js",
+    "main.css": "/note-app/static/css/main.84a5964e.css",
+    "main.js": "/note-app/static/js/main.df80753c.js",
     "static/media/IndieFlower-Regular.ttf": "/note-app/static/media/IndieFlower-Regular.599d26584b9afc1d20b1.ttf",
     "index.html": "/note-app/index.html",
-    "main.e8a15862.css.map": "/note-app/static/css/main.e8a15862.css.map",
-    "main.1e36e947.js.map": "/note-app/static/js/main.1e36e947.js.map"
+    "main.84a5964e.css.map": "/note-app/static/css/main.84a5964e.css.map",
+    "main.df80753c.js.map": "/note-app/static/js/main.df80753c.js.map"
   },
   "entrypoints": [
-    "static/css/main.e8a15862.css",
-    "static/js/main.1e36e947.js"
+    "static/css/main.84a5964e.css",
+    "static/js/main.df80753c.js"
   ]
 }
