@@ -1,21 +1,23 @@
-import React from "react";
+import React,{useContext} from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import {ThemeContext} from "../App";
 
 const Header = ({ handleToggleDarkMode, mode }) => {
+  const theme = useContext(ThemeContext);
   return (
     <>
       <div className="header">
         <h1>Notes</h1>
-        {mode && (
-          <div onClick={() => handleToggleDarkMode((value) => !value)}>
+        {theme.mode && (
+          <div onClick={() => theme.setMode((value) => !value)}>
             <MdLightMode
               size="1.3em"
               style={{ color: "white", cursor: "pointer" }}
             />
           </div>
         )}
-        {!mode && (
-          <div onClick={() => handleToggleDarkMode((value) => !value)}>
+        {!theme.mode && (
+          <div onClick={() => theme.setMode((value) => !value)}>
             <MdDarkMode
               size="1.3em"
               style={{ cursor: "pointer" }}

@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "../App";
 const AddNote = ({
   handleAddNote,
   handleUpdateNote,
-  id,
-  mode,
+  id,  
   note,
   edit,
   editCloseHandler,
 }) => {
   const [noteText, setNoteText] = useState(note ? note : "");
   const characterLimit = 200;
+  const theme = useContext(ThemeContext);
 
   const handleChange = (event) => {
     if (characterLimit - event.target.value.length >= 0) {
@@ -25,7 +26,7 @@ const AddNote = ({
   };
   return (
     <>
-      <div className={`${mode && "note-dark"} ${!mode && "note"}`}>
+      <div className={`${theme.mode && "note-dark"} ${!theme.mode && "note"}`}>
         <textarea
           rows="7"
           cols="10"
@@ -37,7 +38,9 @@ const AddNote = ({
           <div className="note-footer">
             <small>{characterLimit - noteText.length} Remaining</small>
             <button
-              className={`${mode && "save-dark"} ${!mode && "save"}`}
+              className={`${theme.mode && "save-dark"} ${
+                !theme.mode && "save"
+              }`}
               onClick={handleClick}
             >
               Save
@@ -48,7 +51,9 @@ const AddNote = ({
           <div className="note-footer">
             <small>{characterLimit - noteText.length} Remaining</small>
             <button
-              className={`${mode && "save-dark"} ${!mode && "save"}`}
+              className={`${theme.mode && "save-dark"} ${
+                !theme.mode && "save"
+              }`}
               onClick={() => {
                 handleUpdateNote(id, noteText);
                 editCloseHandler(false);
@@ -57,7 +62,9 @@ const AddNote = ({
               Update
             </button>
             <button
-              className={`${mode && "save-dark"} ${!mode && "save"}`}
+              className={`${theme.mode && "save-dark"} ${
+                !theme.mode && "save"
+              }`}
               onClick={() => editCloseHandler(false)}
             >
               Close

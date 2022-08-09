@@ -3,6 +3,10 @@ import { nanoid } from "nanoid";
 import NotesList from "./components/NotesList";
 import Search from "./components/Search";
 import Header from "./components/Header";
+import { createContext } from "react";
+
+export const ThemeContext = createContext();
+
 const App = () => {
   const [notes, setNotes] = useState([
     { id: nanoid(), text: "This is My First Note", date: "15/04/2021" },
@@ -50,27 +54,26 @@ const App = () => {
   };
 
   return (
-    <div className={`${darkMode && "dark-mode"} ${!darkMode && "light-mode"}`}>
-      {!loading && (
-        <div className="container">
-          <Header handleToggleDarkMode={setDarkMode} mode={darkMode} />
-          <Search
-            handleSearchText={setSearchText}
-            text={searchText}
-            mode={darkMode}
-          />
-          <NotesList
-            notes={notes.filter((note) =>
-              note.text.toLowerCase().includes(searchText.toLowerCase())
-            )}
-            handleAddNote={addNote}
-            handleUpdateNote={updateNote}
-            handleDeleteNote={deleteNote}
-            mode={darkMode}
-          />
-        </div>
-      )}
-    </div>
+    <ThemeContext.Provider value={{ mode: darkMode, setMode: setDarkMode }}>
+      <div
+        className={`${darkMode && "dark-mode"} ${!darkMode && "light-mode"}`}
+      >
+        {!loading && (
+          <div className="container">
+            <Header handleToggleDarkMode={setDarkMode} />
+            <Search handleSearchText={setSearchText} text={searchText} />
+            <NotesList
+              notes={notes.filter((note) =>
+                note.text.toLowerCase().includes(searchText.toLowerCase())
+              )}
+              handleAddNote={addNote}
+              handleUpdateNote={updateNote}
+              handleDeleteNote={deleteNote}
+            />
+          </div>
+        )}
+      </div>
+    </ThemeContext.Provider>
   );
 };
 export default App;

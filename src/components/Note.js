@@ -1,12 +1,15 @@
 import { MdDeleteForever, MdEdit } from "react-icons/md";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import AddNote from "./AddNote";
-const Note = ({ id, text, date, handleDeleteNote, handleUpdateNote, mode }) => {
+import {ThemeContext} from "../App";
+
+const Note = ({ id, text, date, handleDeleteNote, handleUpdateNote }) => {
   const [isEdit, setIsEdit] = useState(false);
+  const theme = useContext(ThemeContext);
   return (
     <>
       {!isEdit && (
-        <div className={`${mode && "note-dark"} ${!mode && "note"}`}>
+        <div className={`${theme.mode && "note-dark"} ${!theme.mode && "note"}`}>
           <span>{text}</span>
           <div className="note-footer">
             <small>{date}</small>
