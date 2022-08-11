@@ -1,14 +1,16 @@
 {
   "files": {
-    "main.css": "/note-app/static/css/main.c171309b.css",
-    "main.js": "/note-app/static/js/main.262f4d6a.js",
+    "main.css": "/note-app/static/css/main.23d2a3c0.css",
+    "main.js": "/note-app/static/js/main.7b9d6ccd.js",
+    "static/media/Raleway-VariableFont_wght.ttf": "/note-app/static/media/Raleway-VariableFont_wght.575ec9e676c7a85494bb.ttf",
+    "static/media/Raleway-Italic-VariableFont_wght.ttf": "/note-app/static/media/Raleway-Italic-VariableFont_wght.292a60624abe8149803a.ttf",
     "static/media/IndieFlower-Regular.ttf": "/note-app/static/media/IndieFlower-Regular.599d26584b9afc1d20b1.ttf",
     "index.html": "/note-app/index.html",
-    "main.c171309b.css.map": "/note-app/static/css/main.c171309b.css.map",
-    "main.262f4d6a.js.map": "/note-app/static/js/main.262f4d6a.js.map"
+    "main.23d2a3c0.css.map": "/note-app/static/css/main.23d2a3c0.css.map",
+    "main.7b9d6ccd.js.map": "/note-app/static/js/main.7b9d6ccd.js.map"
   },
   "entrypoints": [
-    "static/css/main.c171309b.css",
-    "static/js/main.262f4d6a.js"
+    "static/css/main.23d2a3c0.css",
+    "static/js/main.7b9d6ccd.js"
   ]
 }
