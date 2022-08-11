@@ -9,6 +9,8 @@ import { createContext, useReducer } from "react";
 
 export const ThemeContext = createContext();
 
+export const NoteHandlerContext = createContext();
+
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -29,46 +31,33 @@ const App = () => {
 
   useEffect(() => {
     localStorage.setItem("react-notes-app-data", JSON.stringify(state.notes));
-  }, [state.notes]);
-
-  const addNote = (text) => {
-    dispatch({ type: "add", payload: { text: text } });
-  };
-
-  const updateNote = (id, text) => {
-    dispatch({ type: "edit", payload: { id: id, text: text } });
-  };
-
-  const deleteNote = (id) => {
-    dispatch({ type: "delete", payload: { id: id } });
-  };
+  }, [state.notes]); 
 
   return (
-    <ThemeContext.Provider value={{ mode: darkMode, setMode: setDarkMode }}>
-      <div
-        className={`${darkMode && "dark-mode"} ${!darkMode && "light-mode"}`}
-      >
-        {!loading && (
-          <div className="container">
-            <Header handleToggleDarkMode={setDarkMode} />
-            <Search handleSearchText={setSearchText} text={searchText} />
-            <NotesList
-              notes={state.notes.filter((note) =>
-                note.text.toLowerCase().includes(searchText.toLowerCase())
-              )}
-              handleAddNote={addNote}
-              handleUpdateNote={updateNote}
-              handleDeleteNote={deleteNote}
-            />
-          </div>
-        )}
-        {
-          loading && (
-            <Loading />
-          )
-        }
-      </div>
-    </ThemeContext.Provider>
+    <NoteHandlerContext.Provider
+      value={{
+        dispatch: dispatch,
+      }}
+    >
+      <ThemeContext.Provider value={{ mode: darkMode, setMode: setDarkMode }}>
+        <div
+          className={`${darkMode && "dark-mode"} ${!darkMode && "light-mode"}`}
+        >
+          {!loading && (
+            <div className="container">
+              <Header />
+              <Search handleSearchText={setSearchText} text={searchText} />
+              <NotesList
+                notes={state.notes.filter((note) =>
+                  note.text.toLowerCase().includes(searchText.toLowerCase())
+                )}
+              />
+            </div>
+          )}
+          {loading && <Loading />}
+        </div>
+      </ThemeContext.Provider>
+    </NoteHandlerContext.Provider>
   );
 };
 export default App;

@@ -1,15 +1,18 @@
 import { MdDeleteForever, MdEdit } from "react-icons/md";
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import AddNote from "./AddNote";
-import {ThemeContext} from "../App";
+import { ThemeContext, NoteHandlerContext } from "../App";
 
-const Note = ({ id, text, date, handleDeleteNote, handleUpdateNote }) => {
+const Note = ({ id, text, date }) => {
   const [isEdit, setIsEdit] = useState(false);
   const theme = useContext(ThemeContext);
+  const noteHandler = useContext(NoteHandlerContext);
   return (
     <>
       {!isEdit && (
-        <div className={`${theme.mode && "note-dark"} ${!theme.mode && "note"}`}>
+        <div
+          className={`${theme.mode && "note-dark"} ${!theme.mode && "note"}`}
+        >
           <span>{text}</span>
           <div className="note-footer">
             <small>{date}</small>
@@ -22,20 +25,16 @@ const Note = ({ id, text, date, handleDeleteNote, handleUpdateNote }) => {
               <MdDeleteForever
                 className="delete-icon"
                 size="1.3em"
-                onClick={() => handleDeleteNote(id)}
+                onClick={() =>
+                  noteHandler.dispatch({ type: "delete", payload: { id: id } })
+                }
               />
             </div>
           </div>
         </div>
       )}
       {isEdit && (
-        <AddNote
-          note={text}
-          edit={true}
-          editCloseHandler={setIsEdit}
-          id={id}
-          handleUpdateNote={handleUpdateNote}
-        />
+        <AddNote note={text} edit={true} editCloseHandler={setIsEdit} id={id} />
       )}
     </>
   );

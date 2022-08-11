@@ -193,6 +193,26 @@ textarea:focus {
   color: #03A9F4;
 }
 
+.save-icon {
+  margin-right: 5px;
+  color: #5f585847;
+}
+
+.save-icon:hover {
+  margin-right: 5px;
+  color: #0f951f;
+  cursor: pointer;
+}
+
+.close-icon {
+  color: #5f585847;  
+}
+
+.close-icon:hover {
+  color: #f40303; 
+  cursor: pointer;
+}
+
 .search {
   display: flex;
   align-items: center;

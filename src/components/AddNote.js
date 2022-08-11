@@ -1,16 +1,14 @@
 import React, { useState, useContext } from "react";
-import { ThemeContext } from "../App";
-const AddNote = ({
-  handleAddNote,
-  handleUpdateNote,
-  id,  
-  note,
-  edit,
-  editCloseHandler,
-}) => {
+import { MdClose, MdSave } from "react-icons/md";
+import { ThemeContext, NoteHandlerContext } from "../App";
+const AddNote = ({ id, note, edit, editCloseHandler }) => {
   const [noteText, setNoteText] = useState(note ? note : "");
+
   const characterLimit = 200;
+
   const theme = useContext(ThemeContext);
+
+  const noteHandler = useContext(NoteHandlerContext);
 
   const handleChange = (event) => {
     if (characterLimit - event.target.value.length >= 0) {
@@ -20,10 +18,34 @@ const AddNote = ({
 
   const handleClick = () => {
     if (noteText.trim().length > 0) {
-      handleAddNote(noteText);
+      if (edit) {
+        noteHandler.dispatch({
+          type: "edit",
+          payload: { id: id, text: noteText },
+        });
+        editCloseHandler(false);
+        return;
+      }
+      noteHandler.dispatch({ type: "add", payload: { text: noteText } });
       setNoteText("");
     }
   };
+
+  const getControls = (edit) => {
+    return (
+      <div>
+        <MdSave onClick={handleClick} size="1.3em" className="save-icon" />
+        {edit && (
+          <MdClose
+            onClick={() => editCloseHandler(false)}
+            size="1.3em"
+            className="close-icon"
+          />
+        )}
+      </div>
+    );
+  };
+
   return (
     <>
       <div className={`${theme.mode && "note-dark"} ${!theme.mode && "note"}`}>
@@ -34,43 +56,10 @@ const AddNote = ({
           onChange={handleChange}
           value={noteText}
         ></textarea>
-        {!edit && (
-          <div className="note-footer">
-            <small>{characterLimit - noteText.length} Remaining</small>
-            <button
-              className={`${theme.mode && "save-dark"} ${
-                !theme.mode && "save"
-              }`}
-              onClick={handleClick}
-            >
-              Save
-            </button>
-          </div>
-        )}
-        {edit && (
-          <div className="note-footer">
-            <small>{characterLimit - noteText.length} Remaining</small>
-            <button
-              className={`${theme.mode && "save-dark"} ${
-                !theme.mode && "save"
-              }`}
-              onClick={() => {
-                handleUpdateNote(id, noteText);
-                editCloseHandler(false);
-              }}
-            >
-              Update
-            </button>
-            <button
-              className={`${theme.mode && "save-dark"} ${
-                !theme.mode && "save"
-              }`}
-              onClick={() => editCloseHandler(false)}
-            >
-              Close
-            </button>
-          </div>
-        )}
+        <div className="note-footer">
+          <small>{characterLimit - noteText.length} Remaining</small>
+          {getControls(edit)}
+        </div>
       </div>
     </>
   );
