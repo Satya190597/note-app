@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { nanoid } from "nanoid";
 import NotesList from "./components/NotesList";
 import Search from "./components/Search";
 import Header from "./components/Header";
-import { createContext } from "react";
+import initialState from "./store/state";
+import reducer from "./store/reducer";
+import Loading from "./util/LoadingMessage";
+import { createContext, useReducer } from "react";
 
 export const ThemeContext = createContext();
 
 const App = () => {
-  const [notes, setNotes] = useState([
-    { id: nanoid(), text: "This is My First Note", date: "15/04/2021" },
-    { id: nanoid(), text: "This is My Second Note", date: "15/04/2021" },
-    { id: nanoid(), text: "This is My Third Note", date: "15/04/2021" },
-  ]);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const [searchText, setSearchText] = useState("");
 
@@ -22,35 +20,27 @@ const App = () => {
 
   useEffect(() => {
     const savedNotes = JSON.parse(localStorage.getItem("react-notes-app-data"));
-    setNotes(savedNotes ? savedNotes : []);
+    dispatch({
+      type: "load",
+      payload: { notes: savedNotes ? savedNotes : [] },
+    });
     setLoading(false);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("react-notes-app-data", JSON.stringify(notes));
-  }, [notes]);
+    localStorage.setItem("react-notes-app-data", JSON.stringify(state.notes));
+  }, [state.notes]);
 
   const addNote = (text) => {
-    const date = new Date();
-    const newNote = {
-      id: nanoid(),
-      text: text,
-      date: date.toLocaleDateString(),
-    };
-    const newNotes = [...notes, newNote];
-    setNotes(newNotes);
+    dispatch({ type: "add", payload: { text: text } });
   };
 
   const updateNote = (id, text) => {
-    const index = notes.findIndex((note) => note.id === id);
-    const notesList = [...notes];
-    notesList[index].text = text;
-    setNotes(notesList);
+    dispatch({ type: "edit", payload: { id: id, text: text } });
   };
 
   const deleteNote = (id) => {
-    const notesList = notes.filter((note) => note.id !== id);
-    setNotes(notesList);
+    dispatch({ type: "delete", payload: { id: id } });
   };
 
   return (
@@ -63,7 +53,7 @@ const App = () => {
             <Header handleToggleDarkMode={setDarkMode} />
             <Search handleSearchText={setSearchText} text={searchText} />
             <NotesList
-              notes={notes.filter((note) =>
+              notes={state.notes.filter((note) =>
                 note.text.toLowerCase().includes(searchText.toLowerCase())
               )}
               handleAddNote={addNote}
@@ -72,6 +62,11 @@ const App = () => {
             />
           </div>
         )}
+        {
+          loading && (
+            <Loading />
+          )
+        }
       </div>
     </ThemeContext.Provider>
   );
