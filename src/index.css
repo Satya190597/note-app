@@ -4,9 +4,21 @@
     url(./fonts/IndieFlower-Regular.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "Raleway-Italic";
+  src: local("Raleway-Italic"),
+    url(./fonts/Raleway-Italic-VariableFont_wght.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway-Regular";
+  src: local("Raleway-Regular"),
+    url(./fonts/Raleway-VariableFont_wght.ttf) format("truetype");
+}
+
 body {
   margin: 0;
-  font-family: IndieFlower-Regular, -apple-system, BlinkMacSystemFont,
+  font-family: Raleway-Regular, -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -30,7 +42,11 @@ textarea {
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between;  
+}
+
+.header h1 {
+  font-family: IndieFlower-Regular;
 }
 
 .dark-mode {
@@ -76,8 +92,7 @@ textarea {
   font-family: IndieFlower-Regular;
   padding: 5px 10px 5px;
   border: none;
-  background-color: #262626;
-  /* color: #85C1E9; */
+  background-color: #262626;  
   color: #ffffff;
   border-radius: 15px;
   box-shadow: -2px -2px 2px 0 rgba(58, 58, 58, 0.3),
@@ -123,8 +138,7 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  white-space: pre-wrap;
-  /* color: #85C1E9; */
+  white-space: pre-wrap;  
   color: #ffffff;
   box-shadow: -5px -5px 5px 0 rgba(58, 58, 58, 0.3),
     12px 12px 12px 0 rgba(0, 0, 0, 0.2);
@@ -141,7 +155,7 @@ textarea {
 }
 
 .note textarea {
-  font-family: IndieFlower-Regular;
+  font-family: Raleway-Regular;
   border: none;
   resize: none;
   background-color: #f3f0f1;
@@ -152,7 +166,7 @@ textarea {
 }
 
 .note-dark textarea {
-  font-family: IndieFlower-Regular;
+  font-family: Raleway-Regular;
   background-color: #262626;
   border: none;
   resize: none;
